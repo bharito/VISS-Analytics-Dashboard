@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Eurostile Regular";
+  src: local("Eurostile Regular"), local("Eurostile");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Eurostile Bold";
+  src: local("Eurostile Bold"), local("Eurostile-Bold"), local("Eurostile");
+  font-weight: 700;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+/* ── Theme tokens ── */
+.viss-app[data-theme="dark"] {
+  --viss-bg: #050505;
+  --viss-surface: #1e3338;
+  --viss-surface-soft: rgba(103, 197, 214, 0.08);
+  --viss-accent: #67c5d6;
+  --viss-text: #ffffff;
+  --viss-muted: rgba(255, 255, 255, 0.72);
+  --viss-border: rgba(103, 197, 214, 0.22);
+  --viss-shadow: 0 10px 30px rgba(0, 0, 0, 0.22);
+}
+
+.viss-app[data-theme="light"] {
+  --viss-bg: #ffffff;
+  --viss-surface: #d4d4d4;
+  --viss-surface-soft: rgba(5, 5, 5, 0.04);
+  --viss-accent: #67c5d6;
+  --viss-text: #050505;
+  --viss-muted: rgba(5, 5, 5, 0.72);
+  --viss-border: rgba(5, 5, 5, 0.1);
+  --viss-shadow: 0 10px 24px rgba(5, 5, 5, 0.08);
+}
+
+/* ── Base ── */
+.viss-app {
+  min-height: 100vh;
+  background: var(--viss-bg);
+  color: var(--viss-text);
+  font-family: "Eurostile Regular", Arial, sans-serif;
+}
+
+.viss-title,
+.viss-page-title,
+.viss-card-title,
+.viss-brand-title,
+.viss-map-title {
+  font-family: "Eurostile Bold", "Eurostile Regular", Arial, sans-serif;
+}
+
+.viss-page-title { font-size: 1.75rem; line-height: 1.1; }
+.viss-card-title { font-size: 1.05rem; line-height: 1.2; }
+.viss-map-title  {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.viss-muted { color: var(--viss-muted); }
+
+/* ── TopBar ── */
+.viss-topbar {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  border-bottom: 1px solid var(--viss-border);
+  background: var(--viss-bg);
+}
+
+/* ── Logo ── */
+.viss-logo-shell {
+  display: flex;
+  height: 44px;
+  width: 44px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  background: rgba(103, 197, 214, 0.14);
+  border: 1px solid var(--viss-border);
+}
+
+.viss-logo-core {
+  height: 18px;
+  width: 18px;
+  border-radius: 6px;
+  background: var(--viss-accent);
+}
+
+/* ── Cards ── */
+.viss-card {
+  background: var(--viss-surface);
+  border: 1px solid var(--viss-border);
+  box-shadow: var(--viss-shadow);
+  isolation: isolate;
+}
+
+.viss-soft {
+  background: var(--viss-surface-soft);
+  border: 1px solid var(--viss-border);
+}
+
+.viss-card-motion {
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease,
+    border-color 220ms ease;
+}
+
+/* ── Buttons ── */
+.viss-button-primary,
+.viss-button-secondary,
+.viss-button-danger,
+.viss-close-button {
+  cursor: pointer;
+  transition: transform 160ms ease, opacity 160ms ease, background-color 160ms ease;
+  font-family: "Eurostile Regular", Arial, sans-serif;
+  border: none;
+}
+
+.viss-button-primary {
+  border-radius: 14px;
+  background: var(--viss-accent);
+  color: #050505;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.viss-button-secondary {
+  border-radius: 14px;
+  background: var(--viss-surface-soft);
+  color: var(--viss-text);
+  border: 1px solid var(--viss-border);
+  padding: 8px 14px;
+  font-size: 13px;
+}
+
+.viss-button-danger {
+  border-radius: 14px;
+  background: #b83232;
+  color: white;
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.viss-close-button {
+  border-radius: 10px;
+  background: var(--viss-surface-soft);
+  color: var(--viss-text);
+  border: 1px solid var(--viss-border);
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+.viss-button-primary:hover,
+.viss-button-secondary:hover,
+.viss-button-danger:hover,
+.viss-close-button:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+/* ── Fields ── */
+.viss-field {
+  border-radius: 14px;
+  border: 1px solid var(--viss-border);
+  background: var(--viss-surface-soft);
+  color: var(--viss-text);
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: "Eurostile Regular", Arial, sans-serif;
+  outline: none;
+}
+
+.viss-field::placeholder { color: var(--viss-muted); }
+
+/* ── Panels ── */
+.viss-chart-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  border: 1px solid var(--viss-border);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+/* ── Rows ── */
+.viss-row {
+  border-radius: 14px;
+  border: 1px solid var(--viss-border);
+  background: var(--viss-surface-soft);
+  transition: transform 160ms ease, background-color 160ms ease;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+
+.viss-row:hover {
+  transform: translateY(-1px);
+  background: rgba(103, 197, 214, 0.07);
+}
+
+button.viss-row {
+  font-family: "Eurostile Regular", Arial, sans-serif;
+  color: var(--viss-text);
+}
+
+/* ── Divider ── */
+.viss-divider {
+  border: none;
+  border-top: 1px solid var(--viss-border);
+  margin: 0;
+}
+
+/* ── Status dots ── */
+.viss-status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.viss-status-online  { background: #22c55e; }
+.viss-status-offline { background: #6b7280; }
+
+/* ── Scrollbars — hidden everywhere ── */
+.viss-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.viss-scroll::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* ── Modal overlay ── */
+.viss-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.62);
+  padding: 16px;
+}
+
+/* ── Severity chips ── */
+.severity-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 3px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+  letter-spacing: 0.03em;
+}
+
+.viss-app[data-theme="dark"] .severity-critical { background: rgba(239,68,68,0.18);  color: #fca5a5; border-color: rgba(239,68,68,0.32);  }
+.viss-app[data-theme="dark"] .severity-high     { background: rgba(249,115,22,0.18); color: #fdba74; border-color: rgba(249,115,22,0.30); }
+.viss-app[data-theme="dark"] .severity-medium   { background: rgba(250,204,21,0.18); color: #fde047; border-color: rgba(250,204,21,0.28); }
+.viss-app[data-theme="dark"] .severity-low      { background: rgba(34,197,94,0.18);  color: #86efac; border-color: rgba(34,197,94,0.28);  }
+
+.viss-app[data-theme="light"] .severity-critical { background: rgba(239,68,68,0.1);   color: #b91c1c; border-color: rgba(239,68,68,0.20);  }
+.viss-app[data-theme="light"] .severity-high     { background: rgba(249,115,22,0.1);  color: #c2410c; border-color: rgba(249,115,22,0.18); }
+.viss-app[data-theme="light"] .severity-medium   { background: rgba(250,204,21,0.12); color: #a16207; border-color: rgba(250,204,21,0.20); }
+.viss-app[data-theme="light"] .severity-low      { background: rgba(34,197,94,0.1);   color: #15803d; border-color: rgba(34,197,94,0.18);  }
+
+/* ── Leaflet overrides ── */
+.leaflet-container {
+  background: #091419;
+  font-family: "Eurostile Regular", Arial, sans-serif;
+}
+
+.leaflet-control-attribution {
+  display: none !important;
+}
+
+.leaflet-div-icon {
+  background: transparent !important;
+  border: none !important;
+}
+
+/* Tint map tiles to VISS dark teal */
+.viss-map-tiles {
+  filter: invert(1) hue-rotate(165deg) saturate(0.35) brightness(0.5) contrast(1.15) !important;
+}
+
+/* Leaflet panes must not escape card stacking context */
+.leaflet-pane,
+.leaflet-tile-pane,
+.leaflet-shadow-pane,
+.leaflet-overlay-pane,
+.leaflet-marker-pane,
+.leaflet-tooltip-pane,
+.leaflet-popup-pane {
+  z-index: auto;
+}
+
+/* Zoom control styled to match VISS */
+.leaflet-control-zoom {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.leaflet-control-zoom a {
+  background: rgba(5, 20, 24, 0.82) !important;
+  color: #67c5d6 !important;
+  border-color: rgba(103, 197, 214, 0.28) !important;
+  font-size: 16px !important;
+  line-height: 26px !important;
+}
+
+.leaflet-control-zoom a:hover {
+  background: rgba(103, 197, 214, 0.18) !important;
+}
+
+/* Ensure modal content always inherits VISS font */
+.viss-modal-overlay > * {
+  font-family: "Eurostile Regular", Arial, sans-serif;
+}
+
+/* Borderless icon close button */
+.viss-icon-close {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--viss-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color 160ms ease, background 160ms ease;
+  padding: 0;
+  font-family: "Eurostile Regular", Arial, sans-serif;
+}
+
+.viss-icon-close:hover {
+  color: #ffffff;
+  background: rgba(103, 197, 214, 0.1);
+}
